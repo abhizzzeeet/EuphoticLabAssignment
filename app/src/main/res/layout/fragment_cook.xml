@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".fragments.CookFragment">
+
+    <include
+        android:id="@+id/include_top_layout"
+        layout="@layout/included_cook_top_layout" />
+
+    <TextView
+        android:id="@+id/mind_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="What's on your mind?"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/mind_tab_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- Include tab items dynamically here using LayoutInflater or define statically -->
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <TextView
+        android:id="@+id/recommendation_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Recommendations"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_recommendation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:clipToPadding="false"
+        android:orientation="horizontal"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="8dp"
+        tools:listitem="@layout/item_recommendation" />
+
+
+</LinearLayout>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?><!-- In order to use tabs, coordinator layout is useful-->
+<!-- In order to use tabs, coordinator layout is useful-->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/activity_container"
+    android:orientation="horizontal"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    tools:context="MainActivity">
+
+
+
+    <LinearLayout
+        android:layout_width="65dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+        android:background="@color/colorAccent"
+        android:clipChildren="false"
+        android:clipToPadding="false">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/vertical_tab_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:clipChildren="false"
+            android:clipToPadding="false"/>
+
+    </LinearLayout>
+
+    <!-- view pager is used to open other fragment by using
+        left or right swip-->
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/container"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical"/>
+
+</LinearLayout>
