@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.euphoticlabsassignment.R
 import com.example.euphoticlabsassignment.models.TabItem
@@ -46,11 +47,21 @@ class VerticalTabLayoutAdapter(
             itemView.setOnClickListener { onTabClick(position) }
             itemView.isSelected = position == selectedPosition
 
-            val layoutParams = itemView.layoutParams as RecyclerView.LayoutParams
-            layoutParams.height = RecyclerView.LayoutParams.WRAP_CONTENT // Adjust height as needed
-            itemView.layoutParams = layoutParams
+            val isSelected = position == selectedPosition
+            itemView.isSelected = isSelected
 
-            tabIndicator.visibility = if (position == selectedPosition) View.VISIBLE else View.GONE
+            val context = itemView.context
+            val textColor = if (isSelected) R.color.colorOrange else R.color.colorText
+            val iconColor = if (isSelected) R.color.colorOrange else R.color.colorText
+
+            textView.setTextColor(ContextCompat.getColor(context, textColor))
+            imageView.setColorFilter(ContextCompat.getColor(context, iconColor))
+
+//            val layoutParams = itemView.layoutParams as RecyclerView.LayoutParams
+//            layoutParams.height = RecyclerView.LayoutParams.WRAP_CONTENT // Adjust height as needed
+//            itemView.layoutParams = layoutParams
+
+            tabIndicator.visibility = if (isSelected) View.VISIBLE else View.GONE
         }
     }
 }
