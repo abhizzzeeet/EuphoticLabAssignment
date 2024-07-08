@@ -10,7 +10,7 @@ import com.example.euphoticlabsassignment.R
 import com.example.euphoticlabsassignment.models.Recommendation
 import com.squareup.picasso.Picasso
 
-class RecommendationAdapter(private val recommendationList: List<Recommendation>) : RecyclerView.Adapter<RecommendationAdapter.ViewHolder>() {
+class RecommendationAdapter(private val recommendationList: List<Recommendation>,private val onItemSelected: (Recommendation) -> Unit) : RecyclerView.Adapter<RecommendationAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_recommendation, parent, false)
@@ -19,6 +19,9 @@ class RecommendationAdapter(private val recommendationList: List<Recommendation>
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(recommendationList[position])
+        holder.itemView.setOnClickListener{
+            onItemSelected(recommendationList[position])
+        }
 
     }
 

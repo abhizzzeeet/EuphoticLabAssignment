@@ -19,7 +19,8 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="center_vertical"
-        android:background="@color/colorAccent"
+        android:background="@color/white"
+        android:elevation="8dp"
         android:clipChildren="false"
         android:clipToPadding="false">
 
