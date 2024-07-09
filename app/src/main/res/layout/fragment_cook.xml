@@ -16,7 +16,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="What's on your mind?"
-        android:textSize="18sp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="5dp"
+        android:textSize="15sp"
         android:textStyle="bold" />
 
     <HorizontalScrollView

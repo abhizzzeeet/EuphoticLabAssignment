@@ -2,10 +2,11 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="colorText">#222C65</color>
+    <color name="colorText">#003F7D</color>
     <color name="colorBackground">#F5F5F5</color>
-    <color name="colorOrange">#EA5322</color>
+    <color name="colorOrange">#FD7702</color>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="violetShade">#C8A4D4</color>
 </resources>
