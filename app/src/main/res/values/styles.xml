@@ -20,4 +20,11 @@
     <style name="AppTheme.PopupOverlay"
         parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="CustomNumberPickerStyle">
+        <item name="android:showDividers">none</item> <!-- Remove horizontal divider -->
+        <item name="android:textColor">@color/colorText</item> <!-- Selected text color -->
+        <item name="android:textSize">18sp</item> <!-- Adjust text size as needed -->
+        <!-- Add other styling attributes here -->
+    </style>
+
 </resources>
