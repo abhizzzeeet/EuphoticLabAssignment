@@ -9,12 +9,15 @@ import android.view.View
 
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.NumberPicker
 import android.widget.PopupWindow
 import android.widget.TextView
 import android.widget.TimePicker
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.euphoticlabsassignment.R
@@ -27,6 +30,7 @@ import com.squareup.picasso.Picasso
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.Calendar
 import java.util.Locale
 
 
@@ -37,7 +41,7 @@ class CookFragment : Fragment() {
     private lateinit var scheduleOrderTextView: TextView
     private lateinit var scheduleTimeTextView: TextView
     private lateinit var scheduleLayout: LinearLayout
-    private var currentlyScheduledItem: Recommendation? = null
+//    private var currentlyScheduledItem: Recommendation? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -128,18 +132,47 @@ class CookFragment : Fragment() {
             ViewGroup.LayoutParams.WRAP_CONTENT
         )
 
-        val timePicker = popupView.findViewById<TimePicker>(R.id.time_picker)
+        val hourPicker = popupView.findViewById<NumberPicker>(R.id.hour_picker)
+        val minutePicker = popupView.findViewById<NumberPicker>(R.id.minute_picker)
+        val amButton = popupView.findViewById<Button>(R.id.am_button)
+        val pmButton = popupView.findViewById<Button>(R.id.pm_button)
         val buttonDelete = popupView.findViewById<TextView>(R.id.button_delete)
         val buttonReschedule = popupView.findViewById<Button>(R.id.button_reschedule)
         val buttonCookNow = popupView.findViewById<Button>(R.id.button_cook_now)
+        val buttonClose = popupView.findViewById<ImageButton>(R.id.button_close)
 
-        if (currentlyScheduledItem == recommendation) {
-            buttonDelete.visibility = View.VISIBLE
-            buttonReschedule.visibility = View.VISIBLE
-        } else {
-            buttonDelete.visibility = View.GONE
-            buttonReschedule.visibility = View.GONE
+        // Set hour picker properties
+        hourPicker.minValue = 1
+        hourPicker.maxValue = 12
+
+        // Set minute picker properties
+        minutePicker.minValue = 0
+        minutePicker.maxValue = 59
+
+        // Default selection for AM/PM buttons
+        var isAMSelected = true // Default AM selection
+
+        buttonClose.setOnClickListener{
+            popupWindow.dismiss()
         }
+
+        amButton.setOnClickListener {
+            isAMSelected = true
+            amButton.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+            pmButton.setTextColor(ContextCompat.getColor(requireContext(), R.color.colorText))
+            amButton.setBackgroundResource(R.drawable.custom_button_background_selected)
+            pmButton.setBackgroundResource(R.drawable.custom_button_background)
+        }
+
+        pmButton.setOnClickListener {
+            isAMSelected = false
+            pmButton.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+            amButton.setTextColor(ContextCompat.getColor(requireContext(), R.color.colorText))
+            pmButton.setBackgroundResource(R.drawable.custom_button_background_selected)
+            amButton.setBackgroundResource(R.drawable.custom_button_background)
+        }
+
+
 
         // Set click listeners for buttons
         buttonDelete.setOnClickListener {
@@ -150,35 +183,26 @@ class CookFragment : Fragment() {
 
         buttonReschedule.setOnClickListener {
             // Handle reschedule action
-            val hour: Int
-            val minute: Int
+            val hour = hourPicker.value
+            val minute = minutePicker.value
+            val period = if (isAMSelected) "AM" else "PM"
 
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-                hour = timePicker.hour
-                minute = timePicker.minute
-            } else {
-                hour = timePicker.currentHour
-                minute = timePicker.currentMinute
-            }
-
-            setSchedule(recommendation, hour, minute)
+            // Call your function to handle rescheduling with hour, minute, and period
+            handleTimePickerAction(recommendation, hour, minute, period)
             popupWindow.dismiss()
         }
 
         buttonCookNow.setOnClickListener {
             // Handle cook now action
-            val hour: Int
-            val minute: Int
+            val currentTime = Calendar.getInstance()
+            val currentHour = currentTime.get(Calendar.HOUR)
+            val currentMinute = currentTime.get(Calendar.MINUTE)
+            val currentPeriod = if (currentTime.get(Calendar.AM_PM) == Calendar.AM) "AM" else "PM"
 
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-                hour = timePicker.hour
-                minute = timePicker.minute
-            } else {
-                hour = timePicker.currentHour
-                minute = timePicker.currentMinute
-            }
 
-            setSchedule(recommendation, hour, minute)
+
+            // Call your function to handle cooking now with hour, minute, and period
+            handleTimePickerAction(recommendation, currentHour, currentMinute, currentPeriod)
             popupWindow.dismiss()
         }
 
@@ -194,15 +218,28 @@ class CookFragment : Fragment() {
         }
 
     }
-    private fun setSchedule(recommendation: Recommendation, hour: Int, minute: Int) {
+    private fun handleTimePickerAction(recommendation: Recommendation, hour: Int, minute: Int, period: String) {
+        val formattedTime = String.format(Locale.getDefault(), "%02d:%02d %s", hour, minute, period)
+
+        // Example: You can update UI elements or perform API calls based on the action
+        // For demonstration, we're logging the scheduled time
+        Log.d("CookFragment", "Scheduled time for ${recommendation.dishName}: $formattedTime")
+
+        // Replace with your logic to handle scheduling or cooking actions
+        // Example: Call an API or update UI elements
+        // For demonstration, we're updating UI elements directly
         Picasso.get()
             .load(recommendation.imageUrl)
             .placeholder(R.drawable.placeholder) // optional placeholder image
             .into(scheduleImage)
         scheduleOrderTextView.text = recommendation.dishName
-        scheduleTimeTextView.text = String.format(Locale.getDefault(), "Scheduled %02d:%02d", hour, minute)
+        scheduleTimeTextView.text = String.format(Locale.getDefault(), "Scheduled %02d:%02d %s", hour, minute, period)
         scheduleLayout.visibility = View.VISIBLE
-        currentlyScheduledItem = recommendation
+//        currentlyScheduledItem = recommendation
+
+        // Example: You might want to call an API to schedule this recommendation at the specified time
+        // api.scheduleRecommendation(recommendation.id, hour, minute, period, object : Callback<Boolean> { ... })
     }
+//
 }
 

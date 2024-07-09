@@ -35,16 +35,75 @@
 
     </LinearLayout>
 
-    <!-- TimePicker with fixed AM/PM and max time limit -->
-    <TimePicker
-        android:id="@+id/time_picker"
+    <!-- Custom TimePicker layout -->
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:timePickerMode="spinner"
-        android:layout_gravity="center_horizontal"
-        android:clipToPadding="false" />
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:clipToPadding="false">
 
+        <!-- Hour and Minute spinners -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="@drawable/custom_spinner_background"
+            android:padding="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_gravity="center_horizontal">
+
+            <NumberPicker
+                android:id="@+id/hour_picker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:textColor="@color/colorText"
+                android:textStyle="bold"
+                android:gravity="center"/>
+
+            <NumberPicker
+                android:id="@+id/minute_picker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:textColor="@color/colorText"
+                android:textStyle="bold"
+                android:gravity="center"/>
+        </LinearLayout>
+
+        <!-- Vertical layout for AM/PM buttons -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal|center_vertical"
+            android:layout_marginStart="16dp">
+
+            <Button
+                android:id="@+id/am_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="AM"
+                android:background="@drawable/custom_button_background"
+
+                android:textStyle="bold"
+                android:padding="8dp"/>
+
+            <Button
+                android:id="@+id/pm_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PM"
+                android:background="@drawable/custom_button_background"
+
+                android:textStyle="bold"
+                android:padding="8dp"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Bottom horizontal layout -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -57,13 +116,12 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.2"
-
+            android:text="@string/underlined_text"
             android:paddingBottom="5dp"
             android:textSize="12dp"
             android:gravity="start"
             android:layout_gravity="center_vertical"
-            android:textColor="@color/colorRed"
-            />
+            android:textColor="@color/colorRed"/>
 
         <LinearLayout
             android:layout_width="0dp"
@@ -82,7 +140,6 @@
                 android:textSize="10dp"
                 android:layout_marginRight="4dp"
                 android:background="@drawable/time_picker_button_reshedule"/>
-
 
             <Button
                 android:id="@+id/button_cook_now"
