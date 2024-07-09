@@ -74,5 +74,6 @@ class ViewPagerAdapter(fragmentActivity: FragmentActivity) : FragmentStateAdapte
             else -> throw IllegalStateException("Unexpected position: $position")
         }
     }
+
 }
 

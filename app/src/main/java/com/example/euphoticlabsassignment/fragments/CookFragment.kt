@@ -27,6 +27,7 @@ import com.example.euphoticlabsassignment.models.Recommendation
 import com.example.euphoticlabsassignment.retrofit.RetrofitInterface
 import com.example.euphoticlabsassignment.retrofit.RetrofitObject
 import com.squareup.picasso.Picasso
+import kotlinx.coroutines.delay
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -117,7 +118,19 @@ class CookFragment : Fragment() {
             }
         })
 
+        val buttonExplore = view.findViewById<Button>(R.id.button_one)
+        val buttonConfused = view.findViewById<Button>(R.id.button_two)
 
+        buttonExplore.setOnClickListener {
+            // Change text color of button_one temporarily
+            Toast.makeText(requireContext(), "Button Explore clicked", Toast.LENGTH_SHORT).show()
+
+        }
+        buttonConfused.setOnClickListener {
+            // Change text color of button_one temporarily
+            Toast.makeText(requireContext(), "Button Confused to Cook clicked", Toast.LENGTH_SHORT).show()
+
+        }
 
 
 
@@ -140,6 +153,8 @@ class CookFragment : Fragment() {
         val buttonReschedule = popupView.findViewById<Button>(R.id.button_reschedule)
         val buttonCookNow = popupView.findViewById<Button>(R.id.button_cook_now)
         val buttonClose = popupView.findViewById<ImageButton>(R.id.button_close)
+
+
 
         // Set hour picker properties
         hourPicker.minValue = 1
