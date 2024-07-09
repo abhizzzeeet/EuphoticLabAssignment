@@ -62,11 +62,11 @@ class CookFragment : Fragment() {
 // Example data (you can replace with your own data fetching logic)
         val tabData = listOf(
             MindTab(R.mipmap.ic_rice, "Rice Items"),
-            MindTab(R.mipmap.ic_rice, "Indian"),
-            MindTab(R.mipmap.ic_rice, "Curries"),
-            MindTab(R.mipmap.ic_rice, "Soups"),
-            MindTab(R.mipmap.ic_rice, "Deserts"),
-            MindTab(R.mipmap.ic_rice, "Snacks")
+            MindTab(R.mipmap.ic_indian, "Indian"),
+            MindTab(R.mipmap.ic_curries, "Curries"),
+            MindTab(R.mipmap.ic_soup, "Soups"),
+            MindTab(R.mipmap.ic_desert, "Deserts"),
+            MindTab(R.mipmap.ic_snack, "Snacks")
         )
 
         for (tab in tabData) {

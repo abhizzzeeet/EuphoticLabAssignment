@@ -1,34 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<androidx.cardview.widget.CardView
-xmlns:android="http://schemas.android.com/apk/res/android"
-android:id="@+id/card_view"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:layout_margin="4dp"
-android:padding="8dp"
-
-android:foreground="?android:attr/selectableItemBackground">
-
-<LinearLayout
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:gravity="center">
+    android:layout_margin="8dp"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="40dp"
+    app:cardElevation="4dp">
 
-    <!-- Image -->
-    <ImageView
-        android:id="@+id/image_tab"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginEnd="8dp" />
-
-    <!-- Text -->
-    <TextView
-        android:id="@+id/text_tab"
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="14sp" />
+        android:padding="8dp"> <!-- Reduced padding -->
 
-</LinearLayout>
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/image_tab"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            app:civ_border_color="@android:color/transparent"
+            app:civ_border_width="0dp" />
+
+        <TextView
+            android:id="@+id/text_tab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@id/image_tab"
+            android:text="Your text here"
+            android:textColor="@color/colorText"
+            android:textSize="14sp" />
+
+    </RelativeLayout>
 </androidx.cardview.widget.CardView>
