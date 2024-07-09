@@ -129,7 +129,7 @@ class CookFragment : Fragment() {
         )
 
         val timePicker = popupView.findViewById<TimePicker>(R.id.time_picker)
-        val buttonDelete = popupView.findViewById<Button>(R.id.button_delete)
+        val buttonDelete = popupView.findViewById<TextView>(R.id.button_delete)
         val buttonReschedule = popupView.findViewById<Button>(R.id.button_reschedule)
         val buttonCookNow = popupView.findViewById<Button>(R.id.button_cook_now)
 

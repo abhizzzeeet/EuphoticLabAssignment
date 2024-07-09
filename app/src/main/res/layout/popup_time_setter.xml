@@ -1,44 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="@android:color/white"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:clipToPadding="false">
 
+    <!-- Top bar with schedule text and close button -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Schedule Cooking Time"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"/>
+
+        <ImageButton
+            android:id="@+id/button_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/ic_menu_close_clear_cancel"
+            android:background="?android:attr/selectableItemBackground"
+            android:padding="8dp"
+            android:contentDescription="Close"/>
+
+    </LinearLayout>
+
+    <!-- TimePicker with fixed AM/PM and max time limit -->
     <TimePicker
         android:id="@+id/time_picker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:timePickerMode="spinner" />
+        android:layout_marginTop="16dp"
+        android:timePickerMode="spinner"
+        android:layout_gravity="center_horizontal"
+        android:clipToPadding="false" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal">
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:weightSum="1">
 
-        <Button
+        <TextView
             android:id="@+id/button_delete"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:text="Delete" />
+            android:layout_weight="0.2"
 
-        <Button
-            android:id="@+id/button_reschedule"
-            android:layout_width="wrap_content"
+            android:paddingBottom="5dp"
+            android:textSize="12dp"
+            android:gravity="start"
+            android:layout_gravity="center_vertical"
+            android:textColor="@color/colorRed"
+            />
+
+        <LinearLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:text="Reschedule" />
+            android:layout_weight="0.8"
+            android:orientation="horizontal"
+            android:gravity="end">
 
-        <Button
-            android:id="@+id/button_cook_now"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Cook Now" />
+            <Button
+                android:id="@+id/button_reschedule"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Re-schedule"
+                android:textColor="@color/colorOrange"
+                android:textStyle="bold"
+                android:textSize="10dp"
+                android:layout_marginRight="4dp"
+                android:background="@drawable/time_picker_button_reshedule"/>
 
+
+            <Button
+                android:id="@+id/button_cook_now"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cook Now"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:textSize="10dp"
+                android:background="@drawable/time_picker_button_cook_now"/>
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>
